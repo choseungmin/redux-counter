@@ -22,10 +22,6 @@ class App extends Component {
     }
 }
 
-<<<<<<< HEAD
-
-export default App;
-=======
 // 액션함수 준비
 const mapToDispatch = (dispatch) => ({
     onCreate: () => dispatch(actions.create(getRandomColor())),
@@ -34,4 +30,3 @@ const mapToDispatch = (dispatch) => ({
 
 // 리덕스에 연결을 시키고 내보낸다
 export default connect(null, mapToDispatch)(App);
->>>>>>> dev
