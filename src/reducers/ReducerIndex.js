@@ -1,9 +1,13 @@
 import * as types from '../actions/ActionTypes';
 
-//초기화 상태를 정의 합니다
+// 초기화 상태를 정의 합니다
 const initialState = {
-    color: 'black',
-    number: 0
+    counters: [
+        {
+            color: 'black',
+            number: 0
+        }
+    ]
 };
 
 /*
@@ -14,25 +18,65 @@ const initialState = {
     기존 상태 값에 원하는 값을 덮어쓴 새로운 객체를 만들어서 반환해야합니다.
 */
 
+// 리듀서 함수를 정의합니다.
 function counter(state = initialState, action) {
+
+    const { counters } = state;
+
     switch (action.type) {
-      case types.INCREMENT:
-          return {
-              ...state,
-              number: state.number + 1
-          };
-      case types.DECREMENT:
-          return {
-              ...state,
-              number: state.number - 1
-          };
-      case types.SET_COLOR:
-          return {
-              ...state,
-              color: action.color
-          };
-      default:
-          return state;
+        //카운터를 새로 추가합니다.
+        case types.CREATE:
+            return {
+                counters: [
+                    ...counters,
+                    {
+                        color: action.color,
+                        number: 0
+                    }
+                ]
+            };
+        // slice 를 이용하여 맨 마지막 카운터를 제외시킵니다.
+        case types.REMOVE:
+            return{
+                counters: counters.slice(0, counters.length - 1)
+            };
+        // action.index 번째 카운터의 number 에 1을 더합니다.
+        case types.INCREMENT:
+            return {
+                counters: [
+                    ...counters.slice(0, action.index),
+                    {
+                        ...counters[action.index],
+                        number: counters[action.index].number + 1
+                    },
+                    ...counters.slice(action.index + 1, counters.length)
+                ]
+            };
+        // action.index 번째 카운터의 number 에 1을 뺍니다.
+        case types.DECREMENT:
+            return {
+                counters: [
+                    ...counters.slice(0, action.index),
+                    {
+                        ...counters[action.index],
+                        number: counters[action.index].number - 1
+                    },
+                    ...counters.slice(action.index + 1, counters.length)
+                ]
+            };
+        case types.SET_COLOR:
+            return {
+                counters: [
+                    ...counters.slice(0, action.index),
+                    {
+                        ...counters[action.index],
+                        color: action.color
+                    },
+                    ...counters.slice(action.index + 1, counters.length)
+                ]
+            };
+        default:
+            return state;
     }
 };
 
