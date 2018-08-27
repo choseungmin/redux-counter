@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 
 import './CounterList.css';
 
-const CounterList = ({ counters, onIncrement, onDecrement, onSetColor }) => {
+const CounterList = ({counters, onIncrement, onDecrement, onSetColor}) => {
 
     const counterList = counters.map(
         (counter, i) => (
-            <Counter
+            <Counter 
                 key={i}
                 index={i}
                 {...counter}
@@ -41,6 +41,6 @@ CounterList.defaultProps = {
     onIncrement: () => console.warn('onIncrement not defined'),
     onDecrement: () => console.warn('onDecrement not defined'),
     onSetColor: () => console.warn('onSetColor not defined')
-};
+}
 
 export default CounterList;

@@ -21,9 +21,9 @@ Buttons.propTypes = {
     onRemove: PropTypes.func
 };
 
-Buttons.defaltProps = {
+Buttons.defaultProps = {
     onCreate: () => console.warn('onCreate not defined'),
-    onRemove: () => console.warn('onRemove not defiend')
+    onRemove: () => console.warn('onRemove not defined')
 };
 
 export default Buttons;
