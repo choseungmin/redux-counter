@@ -7,16 +7,16 @@ import './CounterList.css';
 const CounterList = ({ counters, onIncrement, onDecrement, onSetColor }) => {
 
     const counterList = counters.map(
-        (counter, i) => {
+        (counter, i) => (
             <Counter
                 key={i}
                 index={i}
-                {...counters}
+                {...counter}
                 onIncrement={onIncrement}
                 onDecrement={onDecrement}
                 onSetColor={onSetColor}
             />
-        }
+        )
     );
 
     return (
@@ -41,6 +41,6 @@ CounterList.defaultProps = {
     onIncrement: () => console.warn('onIncrement not defined'),
     onDecrement: () => console.warn('onDecrement not defined'),
     onSetColor: () => console.warn('onSetColor not defined')
-}
+};
 
 export default CounterList;

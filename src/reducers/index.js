@@ -64,7 +64,8 @@ function counter(state = initialState, action) {
                     ...counters.slice(action.index + 1, counters.length)
                 ]
             };
-        default: state;
+        default:
+            return state;
     }
 };
 
